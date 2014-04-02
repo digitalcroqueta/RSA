@@ -1,4 +1,4 @@
-mport java.math.*;
+import java.math.*;
 import java.util.Random;
 
 /**
@@ -132,7 +132,7 @@ public class Prime {
 	 */
 	public BigInteger initializeK(){
 		int bits = getB();
-		if (bits > 3) {
+		if (bits > 2) {
 			BigInteger k = BigInteger.ONE.shiftLeft(bits-1).subtract(BigInteger.valueOf(5));
 			k = k.divide(BigInteger.valueOf(6));
 			return k.add(BigInteger.ONE);
