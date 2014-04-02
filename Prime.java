@@ -43,7 +43,7 @@ public class Prime {
 	 * @param	BigInteger base,exp,mod
 	 * @return BigInteger  [a^(n-1)] (mod n)
 	 */
-	private BigInteger expModn(BigInteger base, BigInteger exp, BigInteger mod) {
+	public BigInteger expModn(BigInteger base, BigInteger exp, BigInteger mod) {
 		BigInteger x = BigInteger.ONE;
 		while (exp.compareTo(BigInteger.ZERO) > 0) {
 			BigInteger exp2 = exp.remainder(TWO);
