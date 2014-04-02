@@ -1,0 +1,4 @@
+In this project, I will show how to generate large prime numbers followed by 
+implementing the RSA algorithm. Since it will be needed to compute large exponents 
+as part of the RSA algorithm, the standard integer types (int – 16 or 32 bits, long 
+int – 32 bits and even long long int – 64 bits) won’t be enough, so I will be use the BigInteger built-in class of Java.
