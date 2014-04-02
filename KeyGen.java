@@ -56,7 +56,7 @@ public class KeyGen {
 				&&(p.getN().compareTo(totient) < 0)
 				&&(p.testPrime(5)))){
             // To make sure we test the lowest prime candidates
-            // we need to increment nbits and k slowly and never
+            // we need to increment nbits and k slowly and not
             // at the same time:
             if (aux%2 == 0){
                 nbits = nbits + 1;

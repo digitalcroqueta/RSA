@@ -132,7 +132,7 @@ public class Prime {
 	 */
 	public BigInteger initializeK(){
 		int bits = getB();
-		if (bits > 2) {
+		if (bits > 3) {
 			BigInteger k = BigInteger.ONE.shiftLeft(bits-1).subtract(BigInteger.valueOf(5));
 			k = k.divide(BigInteger.valueOf(6));
 			return k.add(BigInteger.ONE);
@@ -149,16 +149,11 @@ public class Prime {
 	 */
 	public boolean checkRange() {
 		int nbits = getB();
-		if (nbits <= 3){
-			return true;
-		}
-		else {
-			BigInteger max = BigInteger.ONE.shiftLeft(nbits);
-			BigInteger min = BigInteger.ONE.shiftLeft(nbits - 1);
-			if ((getN().compareTo(max) < 0) && (getN().compareTo(min) >= 0))
-				return true;
-			return false;
-		}
+        BigInteger max = BigInteger.ONE.shiftLeft(nbits);
+        BigInteger min = BigInteger.ONE.shiftLeft(nbits - 1);
+        if ((getN().compareTo(max) < 0) && (getN().compareTo(min) >= 0))
+            return true;
+        return false;
 	}
 	
 	/**
@@ -167,15 +162,30 @@ public class Prime {
 	 *
 	 * The algorithm is conflictive when generating
 	 * prime numbers of less than 3 bits (because k = 0)
+     * So I treated individually these three cases (bits = 1,2,3)
 	 *
 	 * @param BigInteger
 	 */
 	public void generateCandidate(BigInteger k) {
 		int bits = getB();
-		if (bits<=3){ // Conflictive cases
+        // First check the conflictive cases
+		if (bits<=3){
+            // With 1 bit, the only prime is 1
 			if(bits == 1) setN(BigInteger.ONE);
-			else if(bits == 2) setN(TWO.add(BigInteger.ONE));
-			else if(bits == 3) setN(BigInteger.valueOf(5));
+			// With 2 bits, the only primes are 2 and 3
+            else if(bits == 2) {
+                if(k.compareTo(BigInteger.ZERO) == 0) setN(TWO);
+                else {
+                    setN(TWO.add(BigInteger.ONE));
+                }
+            }
+            // With 3 bits, the only primes are 5 and 7
+			else if(bits == 3)
+                if(k.compareTo(BigInteger.ZERO) == 0) setN(BigInteger.valueOf(5));
+                else {
+                    setN(BigInteger.valueOf(7));
+                }
+        // For the rest of numbers we use the general formula n=6k+5
 		} else {
 			BigInteger n = k.multiply(BigInteger.valueOf(6));
 			n = n.add(BigInteger.valueOf(5));
