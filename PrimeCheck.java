@@ -14,12 +14,12 @@ public class PrimeCheck {
 			System.out.println("Please, insert an integer number as argument");
 			return;
 		}
+        BigInteger number = new BigInteger(args[0]);
 		// All numbers equal or less than 3 are primes!
-		if(Integer.parseInt(args[0]) <= 3) {
+		if(number.compareTo(BigInteger.valueOf(4)) == -1) {
 			System.out.println("TRUE\n");
 			return;
 		}
-		BigInteger number = new BigInteger(args[0]);
 		Prime p = new Prime(number);
 		// The argument for testPrime is the number of test to perform on the prime candidate
 		if (p.testPrime(10)) System.out.println("TRUE\n");
